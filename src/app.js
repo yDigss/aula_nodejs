@@ -1,13 +1,21 @@
-const express = require('express')
+import express from 'express'
 const app = express()
-const port = 3000
+
+//mock
+const selecoes = [
+    {id: 1, selecao: 'Brasil', group: 'G'},
+    {id: 2, selecao: 'Suíça', group: 'G'},
+    {id: 3, selecao: 'Sérvia', group: 'G'},
+    {id: 4, selecao: 'Camarões', group: 'G'}
+]
 
 // criando rota padrão
 app.get('/', (req, res) => {
-    res.send('Curso de Node.JS')
+    res.status(200).send('Curso de Node.JS')
 })
 
-// escutar porta 3000
-app.listen(port, () => {
-    console.log(`Servidor rodando no endereço http://localhost:${port}`)
-}) 
+app.get('/selecoes', (req, res) =>{
+    res.send(selecoes)
+})
+
+export default app
