@@ -1,5 +1,9 @@
 import express from 'express'
+
 const app = express()
+
+//indicar para o express ler body com json
+app.use(express.json())
 
 //mock
 const selecoes = [
@@ -16,6 +20,11 @@ app.get('/', (req, res) => {
 
 app.get('/selecoes', (req, res) =>{
     res.send(selecoes)
+})
+
+app.post('/selecoes', (req, res) =>{
+    selecoes.push(req.body)
+    res.status(201).send('Seleçao cadastrada com suscesso!')
 })
 
 export default app
